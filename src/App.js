@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import useLogin  from "./hooks/useLogin";
+import useLogout from "./hooks/useLogout";
+import { AuthContext } from "./contexts/AuthContext";
+import { useContext } from "react";
+import ProfileCard from "./components/ProfileCard";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+const App = () => {
+  const { login, isPending } = useLogin();
+  const { logout } =useLogout();
+
+  const { user } = useContext(AuthContext);
+console.log(user);
+
+
+return (
+  <div className="App">
+    {user ? (
+      <ProfileCard user={user} />
+    ) : (
+      <button className="btn login-btn" onClick={login}>
+        Login With GitHub
+      </button>
+    )}
+  </div>
+);
+};
 
 export default App;
+
+
