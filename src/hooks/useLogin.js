@@ -7,6 +7,8 @@ function useLogin() {
   const [error, setError] = useState(false);
   const [isPending, setIsPending] = useState(false);
   const provider = new GithubAuthProvider();
+  const { dispatch } = useContext(AuthContext);
+
   const login = async () => {
     setError(null);
     setIsPending(true);
