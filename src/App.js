@@ -6,8 +6,7 @@ import ProfileCard from "./components/ProfileCard";
 
 
 const App = () => {
-  const { login, isPending } = useLogin();
-  const { logout } =useLogout();
+  const { login } = useLogin();
 
   const { user } = useContext(AuthContext);
 console.log(user);
